@@ -46,8 +46,5 @@ if st.button("Predict Price"):
         # Display the result in the center
         st.markdown(f"## 🏠 Predicted House Price: **${prediction:.2f}**")
 
-# Footer
-st.markdown("---")
-st.markdown("Developed with ❤️ using Streamlit")
 
 
