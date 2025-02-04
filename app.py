@@ -23,16 +23,20 @@ lstat = st.sidebar.number_input("LSTAT (Percentage of Lower Status Population)",
 
 # Predict button
 if st.sidebar.button("Predict Price"):
-    # Convert input values into a NumPy array
-    input_data = np.array([[crim, zn, indus, rm, age, dis, tax, ptratio, b, lstat]])
+    # Ensure correct data format
+    input_data = np.array([[crim, zn, indus, rm, age, dis, tax, ptratio, b, lstat]], dtype=np.float64)
 
-    # Make prediction
-    prediction = model.predict(input_data)[0]
+    # Check input shape
+    if input_data.shape[1] != 10:
+        st.error(f"Error: Model expects 10 features, but received {input_data.shape[1]}")
+    else:
+        # Make prediction
+        prediction = model.predict(input_data)[0]
 
-    # Display the result
-    st.write(f"### Predicted House Price: ${prediction:.2f}")
+        # Display the result
+        st.write(f"### Predicted House Price: ${prediction:.2f}")
 
 # Footer
 st.sidebar.markdown("---")
-st.sidebar.markdown("Developed with ❤️ using Streamlit")
+
 
